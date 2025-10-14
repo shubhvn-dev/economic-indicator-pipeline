@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: dim_indicators
+    description: "Dimension table for economic indicators"
+    columns:
+      - name: indicator_id
+        description: "Unique identifier for indicator"
+        tests:
+          - unique
+          - not_null
+      - name: indicator_name
+        description: "Full name of the indicator"
+      - name: category
+        description: "Economic category"
+      - name: frequency
+        description: "Data collection frequency"
+
+  - name: dim_time
+    description: "Time dimension for date analysis"
+    columns:
+      - name: date_key
+        description: "Primary key for date"
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: "Year"
+      - name: quarter
+        description: "Quarter (1-4)"
+      - name: month
+        description: "Month (1-12)"
+
+  - name: fct_observations
+    description: "Fact table with economic observations and calculated metrics"
+    columns:
+      - name: indicator_id
+        description: "Foreign key to dim_indicators"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_indicators')
+              field: indicator_id
+      - name: date_key
+        description: "Foreign key to dim_time"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_time')
+              field: date_key
+      - name: observation_value
+        description: "Actual observed value"
+        tests:
+          - not_null
+      - name: yoy_change_pct
+        description: "Year-over-year percentage change"

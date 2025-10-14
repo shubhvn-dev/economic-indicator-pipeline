@@ -1,0 +1,7 @@
+economic_indicators:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: /opt/airflow/data/gold/economic_indicators.duckdb
+      threads: 4

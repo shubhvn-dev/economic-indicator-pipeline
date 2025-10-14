@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_fred_observations
+    description: "Staged FRED economic observations from Silver layer"
+    columns:
+      - name: series_id
+        description: "FRED series identifier"
+        tests:
+          - not_null
+      - name: series_name
+        description: "Human-readable series name"
+        tests:
+          - not_null
+      - name: observation_date
+        description: "Date of the observation"
+        tests:
+          - not_null
+      - name: value
+        description: "Numeric value of the observation"
+        tests:
+          - not_null
+      - name: data_as_of_date
+        description: "Date when data was current (for tracking revisions)"
+      - name: ingested_at
+        description: "Timestamp when data was ingested"
+      - name: transformed_at
+        description: "Timestamp when data was transformed by dbt"
