@@ -1,9 +1,11 @@
-import streamlit as st
+from datetime import datetime
+
 import duckdb
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from datetime import datetime
+
+import streamlit as st
 
 # Page configuration
 st.set_page_config(page_title="Economic Indicators Dashboard", page_icon="📊", layout="wide")

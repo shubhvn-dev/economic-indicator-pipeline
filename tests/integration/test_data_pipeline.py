@@ -1,7 +1,8 @@
-import pytest
-import duckdb
 from pathlib import Path
+
+import duckdb
 import pandas as pd
+import pytest
 
 
 def test_bronze_layer_exists():

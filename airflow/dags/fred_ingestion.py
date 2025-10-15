@@ -1,11 +1,13 @@
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from datetime import datetime, timedelta
-import requests
-import pandas as pd
 import json
 import os
+from datetime import datetime, timedelta
 from pathlib import Path
+
+import pandas as pd
+import requests
+from airflow.operators.python import PythonOperator
+
+from airflow import DAG
 
 # Default arguments for the DAG
 default_args = {

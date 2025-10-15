@@ -1,9 +1,11 @@
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from airflow.operators.trigger_dagrun import TriggerDagRunOperator
-from datetime import datetime, timedelta
 import subprocess
+from datetime import datetime, timedelta
+
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+from airflow.operators.trigger_dagrun import TriggerDagRunOperator
+
+from airflow import DAG
 
 default_args = {
     "owner": "airflow",
