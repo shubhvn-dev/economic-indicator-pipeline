@@ -123,6 +123,10 @@ jobs:
     - name: Create dummy data
       run: python tests/setup_dummy_data.py
     
+    - name: Update dbt profile for CI
+      run: |
+        sed -i 's|/opt/airflow/data/gold/economic_indicators.duckdb|${{ github.workspace }}/data/gold/economic_indicators.duckdb|g' dbt/profiles.yml
+    
     - name: dbt debug
       run: |
         cd dbt
