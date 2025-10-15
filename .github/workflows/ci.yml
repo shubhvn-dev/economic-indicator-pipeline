@@ -50,7 +50,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r airflow/requirements.txt
+        pip install -r airflow/requirements.txt  # This installs Airflow
         pip install -r requirements-dev.txt
     
     - name: Run unit tests
@@ -60,6 +60,8 @@ jobs:
       run: pytest tests/dags/ -v
       env:
         AIRFLOW_HOME: ${{ github.workspace }}/airflow
+        AIRFLOW__CORE__DAGS_FOLDER: ${{ github.workspace }}/airflow/dags
+        AIRFLOW__CORE__LOAD_EXAMPLES: False
     
     - name: Upload coverage reports
       uses: codecov/codecov-action@v3
