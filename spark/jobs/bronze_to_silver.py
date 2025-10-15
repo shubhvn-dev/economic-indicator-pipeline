@@ -97,7 +97,7 @@ def main():
 
     try:
         # Process data
-        df_silver = process_fred_data(spark, bronze_path, silver_path)
+        process_fred_data(spark, bronze_path, silver_path)
 
         print("\nProcessing completed successfully")
         return 0
