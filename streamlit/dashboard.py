@@ -4,7 +4,6 @@ import duckdb
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-
 import streamlit as st
 
 # Page configuration
@@ -27,7 +26,7 @@ def load_indicators():
 def load_observations(indicator_ids):
     conn = get_connection()
     query = f"""
-        SELECT 
+        SELECT
             f.indicator_id,
             i.indicator_name,
             f.date_key,

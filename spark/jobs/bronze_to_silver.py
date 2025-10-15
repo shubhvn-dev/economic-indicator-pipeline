@@ -1,8 +1,6 @@
 import sys
-from pathlib import Path
-
+from pyspark.sql.functions import col, when, to_date
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, lit, regexp_replace, to_date, when
 from pyspark.sql.types import DoubleType
 
 
@@ -65,10 +63,10 @@ def process_fred_data(spark, bronze_path, silver_path):
 
     # Data quality summary
     total_records = df_silver.count()
-    valid_records = df_silver.filter(col("is_valid") == True).count()
-    missing_records = df_silver.filter(col("is_missing") == True).count()
+    valid_records = df_silver.filter(col("is_valid")).count()
+    missing_records = df_silver.filter(col("is_missing")).count()
 
-    print(f"\nData Quality Summary:")
+    print("\nData Quality Summary:")
     print(f"  Total records: {total_records}")
     print(f"  Valid records: {valid_records} ({100*valid_records/total_records:.2f}%)")
     print(f"  Missing records: {missing_records} ({100*missing_records/total_records:.2f}%)")
@@ -82,8 +80,6 @@ def process_fred_data(spark, bronze_path, silver_path):
     df_silver.write.mode("overwrite").partitionBy("series_id").parquet(silver_path)
 
     print("Silver layer processing complete")
-
-    return df_silver
 
 
 def main():
