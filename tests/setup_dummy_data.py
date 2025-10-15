@@ -56,12 +56,12 @@ conn.execute(
     """CREATE VIEW stg_fred_observations AS 
     SELECT 
         indicator_id as series_id, 
-        indicator_name as series_name, 
+        'Test Series' as series_name, 
         date_key as observation_date, 
         observation_value as value, 
         data_as_of_date, 
         ingested_at, 
-        created_at as transformed_at 
+        CURRENT_TIMESTAMP as transformed_at 
     FROM fct_observations"""
 )
 
