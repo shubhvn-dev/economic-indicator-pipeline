@@ -43,3 +43,13 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Testing
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.cover
+
+# Pre-commit
+.pre-commit-config.yamlvenv/
