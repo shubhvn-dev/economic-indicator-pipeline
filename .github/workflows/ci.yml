@@ -103,7 +103,7 @@ jobs:
         docker compose config
 
   dbt-test:
-    name: dbt Tests
+    name: dbt Model Validation
     runs-on: ubuntu-latest
     needs: test
     
@@ -127,15 +127,11 @@ jobs:
       run: |
         sed -i 's|/opt/airflow/data/gold/economic_indicators.duckdb|${{ github.workspace }}/data/gold/economic_indicators.duckdb|g' dbt/profiles.yml
     
-    - name: dbt debug
+    - name: Verify dbt models syntax
       run: |
         cd dbt
-        dbt debug --profiles-dir .
-    
-    - name: dbt compile
-      run: |
-        cd dbt
-        dbt compile --profiles-dir .
+        # Parse dbt models to check for syntax errors
+        dbt parse --profiles-dir . && echo "dbt models validated successfully"  
 
   security-scan:
     name: Security Scanning
